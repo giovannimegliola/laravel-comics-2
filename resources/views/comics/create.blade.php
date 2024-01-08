@@ -15,7 +15,7 @@
             <input type="text" id="price" name="price" placeholder="inserisci un prezzo" class="form-control">
             <input type="text" id="type" name="type" placeholder="inserisci un tipo" class="form-control">
 
-            <button type="submit">invia</button>
+            <button type="submit">Invia</button>
         </form>
 
 
