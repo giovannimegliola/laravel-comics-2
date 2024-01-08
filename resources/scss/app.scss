@@ -20,6 +20,12 @@ main{
     .mydetail{
         width: 500px;
     }
+
+    .card{
+        img{
+            max-height: 300px;
+        }
+    }
 }
 
 .logo{
@@ -44,6 +50,8 @@ footer{
         color: white;
         font-size: 20px;
     }
+
+
 }
 
 
