@@ -6,6 +6,13 @@
 <main>
     <section class="container py-4 ">
         <h1>CURRENT SERIES</h1>
+
+        <a href="{{route('comics.create')}}" class="btn btn-primary my-3">Crea nuovo Fumetto</a>
+
+        @if (session()->has('message'))
+        <div class="alert alert-success">{{ session()->get('message') }}</div>
+        @endif
+
         <div class="row gy-4">
           @foreach ($comics as $comic)
             <div class="col-12 col-md-4 col-lg-3">

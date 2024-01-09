@@ -39,19 +39,25 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        $formData = $request->all();
-        $new_comic = new Comic();
-        $new_comic->title = $formData['title'];
-        $new_comic->description = $formData['description'];
-        $new_comic->thumb = $formData['thumb'];
-        $new_comic->price = $formData['price'];
-        $new_comic->sale_date = $formData['sale_date'];
-        $new_comic->series = $formData['series'];
-        $new_comic->type = $formData['type'];
-        $new_comic->save();
-        //dd($request->all());
 
-        return to_route('comics.index');
+        $request->validate([
+            'title' => 'required|min:5|max:255|unique:comics',
+            'type' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+
+        ]);    //validazione backend
+
+        $formData = $request->all(); //prendo i dati del form dalla request
+
+
+        //$new_comic = new Comic();    //creo nuovo comic
+        //$new_comic->fill($formData); //assegnp i valori del form al nuovo comic
+        //$new_comic->save(); //salvo il nuovo prodotto
+
+        $new_comic = Comic::create($formData); //riassume i 3 step precedenti
+
+        return to_route('comics.show', $new_comic->id); //reindirizzo alla pagina del nuovo prodotto appena creato
     }
 
     /**
@@ -88,13 +94,17 @@ class ComicController extends Controller
     {
 
         $formData = $request->all();
-        $comic->title = $formData['title'];
-        $comic->description = $formData['description'];
-        $comic->thumb = $formData['thumb'];
-        $comic->price = $formData['price'];
-        $comic->sale_date = $formData['sale_date'];
-        $comic->series = $formData['series'];
-        $comic->type = $formData['type'];
+
+        // $comic->title = $formData['title'];
+        // $comic->description = $formData['description'];
+        // $comic->thumb = $formData['thumb'];
+        // $comic->price = $formData['price'];
+        // $comic->sale_date = $formData['sale_date'];
+        // $comic->series = $formData['series'];
+        // $comic->type = $formData['type'];
+
+        $comic->fill($formData);
+
 
         $comic->update();
 
@@ -111,6 +121,6 @@ class ComicController extends Controller
     public function destroy(Comic $comic)
     {
         $comic->delete();
-        return to_route('comics.index');
+        return to_route('comics.index')->with('message', "Il fumetto $comic->title è stato eliminato");
     }
 }
