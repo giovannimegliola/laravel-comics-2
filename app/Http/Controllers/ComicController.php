@@ -48,9 +48,9 @@ class ComicController extends Controller
         $new_comic->series = 'a piacere';
         $new_comic->type = $formData['type'];
         $new_comic->save();
-
-
         //dd($request->all());
+
+        return to_route('comics.index');
     }
 
     /**
