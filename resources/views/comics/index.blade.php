@@ -15,6 +15,12 @@
                         <h5 class="card-title">{{$comic->title}}</h5>
                         <p class="card-text">{!! substr($comic->description, 0, 100) . '...' !!}</p>
                         <a href="{{route('comics.show', $comic->id)}}" class="btn btn-primary">See details</a>
+                        <form action="{{route('comics.destroy', $comic->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Remove</button>
+                        </form>
+
                     </div>
                 </div>
             </div>

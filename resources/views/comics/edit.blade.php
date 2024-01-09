@@ -21,6 +21,7 @@
             <input type="text" id="type" name="type" value="{{old('type', $comic->type)}}" placeholder="inserisci un tipo" class="form-control my-2">
 
             <button type="submit" class="btn btn-primary">Invia</button>
+            <button type="reset" class="btn btn-secondary ">Reset</button>
         </form>
 
 
