@@ -43,9 +43,10 @@ class ComicController extends Controller
         $new_comic = new Comic();
         $new_comic->title = $formData['title'];
         $new_comic->description = $formData['description'];
+        $new_comic->thumb = $formData['thumb'];
         $new_comic->price = $formData['price'];
-        $new_comic->sale_date = '2024-07-01';
-        $new_comic->series = 'a piacere';
+        $new_comic->sale_date = $formData['sale_date'];
+        $new_comic->series = $formData['series'];
         $new_comic->type = $formData['type'];
         $new_comic->save();
         //dd($request->all());
@@ -68,11 +69,12 @@ class ComicController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Comic  $comic
-     * @return \Illuminate\Http\Response
+     *
      */
     public function edit(Comic $comic)
     {
         //
+        return view('comics.edit', compact('comic'));
     }
 
     /**
