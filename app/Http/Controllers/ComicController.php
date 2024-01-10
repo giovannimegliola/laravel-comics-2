@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Comic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 //use Illuminate\View\View;
 
 class ComicController extends Controller
@@ -40,16 +42,16 @@ class ComicController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'title' => 'required|min:5|max:255|unique:comics',
-            'type' => 'required',
-            'description' => 'required',
-            'price' => 'required',
-            'thumb' => 'url',
+        // $request->validate([
+        //     'title' => 'required|min:5|max:255|unique:comics',
+        //     'type' => 'required',
+        //     'description' => 'required',
+        //     'price' => 'required',
+        //     'thumb' => 'url',
 
-        ]);    //validazione backend
+        // ]);    //validazione backend
 
-        $formData = $request->all(); //prendo i dati del form dalla request
+        $formData = $this->validation($request->all()); //prendo i dati del form dalla request
 
 
         //$new_comic = new Comic();    //creo nuovo comic
@@ -94,7 +96,8 @@ class ComicController extends Controller
     public function update(Request $request, Comic $comic)
     {
 
-        $formData = $request->all();
+        //$formData = $request->all();
+        $formData = $this->validation($request->all());
 
         // $comic->title = $formData['title'];
         // $comic->description = $formData['description'];
@@ -123,5 +126,32 @@ class ComicController extends Controller
     {
         $comic->delete();
         return to_route('comics.index')->with('message', "Il fumetto $comic->title è stato eliminato");
+    }
+
+
+    /**
+     * Summary of validation
+     *
+     */
+    private function validation($data)
+    {
+        $validator = Validator::make($data, [
+
+            'title' => 'required|min:5|max:255|unique:comics',
+            'type' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'thumb' => 'url',
+
+        ],[
+            'title.required' => 'il campo titolo è obbligatorio',
+            'title.min' => 'il campo titolo deve avere almeno :min caratteri',
+            'title.max' => 'il campo titolo deve avere almeno :max caratteri',
+            'type.required' => 'il campo tipo è obbligatorio',
+            //specifica restanti messaggi di errore
+
+        ])->validate();
+        return $validator;
+
     }
 }
