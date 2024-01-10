@@ -28,7 +28,9 @@ class StoreComicRequest extends FormRequest
             'type' => 'required',
             'description' => 'required',
             'price' => 'required',
-            'thumb' => 'url',
+            'sale_date' => 'required',
+            'series' => 'nullable',
+            'thumb' => 'url|nullable',
         ];
     }
 
@@ -38,6 +40,9 @@ class StoreComicRequest extends FormRequest
             'title.min' => 'il campo titolo deve avere almeno :min caratteri',
             'title.max' => 'il campo titolo deve avere almeno :max caratteri',
             'type.required' => 'il campo tipo è obbligatorio',
+            'price.required' => 'il campo del prezzo è obbligatorio',
+            'sale_date.required' => 'la data di uscita è obbligatoria',
+            'thumb.url' => 'il campo dell\'immagine deve contenere una url valida',
             //specifica restanti messaggi di errore
         ];
     }

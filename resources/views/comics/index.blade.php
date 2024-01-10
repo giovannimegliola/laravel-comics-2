@@ -7,6 +7,22 @@
     <section class="container py-4 ">
         <h1>CURRENT SERIES</h1>
 
+        <div>
+            <form action="{{route('comics.index')}}" method="GET">
+
+                {{-- <select name="search" id="search">
+                    <option value="">All</option>
+                    <option value="opt1">opt1</option>
+                    <option value="opt2">opt2</option>
+                    <option value="opt">opt3</option>
+                </select> --}}
+
+                <input type="text" >
+
+                <button type="submit" class="btn btn-danger ms-3">Cerca</button>
+            </form>
+        </div>
+
         <a href="{{route('comics.create')}}" class="btn btn-primary my-3">Crea nuovo Fumetto</a>
 
         @if (session()->has('message'))
@@ -25,7 +41,7 @@
                         <form action="{{route('comics.destroy', $comic->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Remove</button>
+                            <button type="submit" class="cancel-button btn btn-danger" data-item-title="{{$comic->title}}">Remove</button>
                         </form>
 
                     </div>
@@ -34,5 +50,7 @@
           @endforeach
         </div>
     </section>
+    @include('partials.modal_delete');
 </main>
+
 @endsection
