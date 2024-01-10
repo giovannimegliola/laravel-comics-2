@@ -98,13 +98,18 @@ php artisan make:controller NomeController
 ...
 
 
-# creo model 
+# creo model resource controller migration seeder e form request per validazioni dati 
 
-php artisan make:model Comic -rcms
+php artisan make:model Comic -rcms --request
 
 # creo rotte
 
 Route::resource('comics', ComicController::class);
+
+#creo form request per validazione 
+
+php artisan make:request StoreModelRequest
+
 
 ```
 
