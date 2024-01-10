@@ -10,14 +10,14 @@
         <div>
             <form action="{{route('comics.index')}}" method="GET">
 
-                {{-- <select name="search" id="search">
+                    <select name="search" id="search">
                     <option value="">All</option>
-                    <option value="opt1">opt1</option>
-                    <option value="opt2">opt2</option>
-                    <option value="opt">opt3</option>
-                </select> --}}
+                    <option value="comic book">comic book</option>
+                    <option value="graphic novel">graphic novel</option>
 
-                <input type="text" >
+                </select>
+
+
 
                 <button type="submit" class="btn btn-danger ms-3">Cerca</button>
             </form>
