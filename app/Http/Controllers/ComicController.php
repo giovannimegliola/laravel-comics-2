@@ -45,6 +45,7 @@ class ComicController extends Controller
             'type' => 'required',
             'description' => 'required',
             'price' => 'required',
+            'thumb' => 'url',
 
         ]);    //validazione backend
 
