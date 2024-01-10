@@ -24,8 +24,8 @@
             <input type="text" id="thumb" name="thumb" placeholder="inserisci un'immagine" class="form-control my-2">
             <input type="text" id="description" name="description" placeholder="inserisci una descrizione" class="form-control my-2">
             <input type="text" id="price" name="price" placeholder="inserisci un prezzo" class="form-control my-2">
-            <input type="text" id="type" name="type" placeholder="inserisci data di uscita" class="form-control my-2">
-            <input type="text" id="type" name="type" placeholder="inserisci una serie" class="form-control my-2">
+            <input type="text" id="sale_date" name="sale_date" placeholder="inserisci data di uscita" class="form-control my-2">
+            <input type="text" id="series" name="series" placeholder="inserisci una serie" class="form-control my-2">
             <input type="text" id="type" name="type" placeholder="inserisci un tipo" class="form-control my-2">
 
             <button type="submit" class="btn btn-primary">Invia</button>
